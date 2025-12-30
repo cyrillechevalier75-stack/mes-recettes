@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Home, Plus, ChefHat } from 'lucide-react';
+import { Home } from 'lucide-react';
 import { clsx } from 'clsx';
 
 export function Layout() {
@@ -27,17 +27,8 @@ export function Layout() {
             </main>
 
             {/* Bottom Navigation */}
-            <nav className="absolute bottom-0 w-full h-24 bg-white border-t border-gray-100 flex items-end justify-around px-6 pb-6 z-50 rounded-t-[2rem] shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
+            <nav className="absolute bottom-0 w-full h-20 bg-white border-t border-gray-100 flex items-center justify-center px-6 pb-2 z-50 rounded-t-[2rem] shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
                 <NavItem to="/" icon={Home} label="Accueil" />
-
-                {/* Floating Action Button */}
-                <Link to="/add" className="relative -top-8 group">
-                    <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center shadow-xl shadow-orange-200 transform transition-all duration-300 group-hover:scale-105 group-active:scale-95 ring-8 ring-gray-50">
-                        <Plus size={32} className="text-white" strokeWidth={3} />
-                    </div>
-                </Link>
-
-                <NavItem to="/recipes" icon={ChefHat} label="Recettes" />
             </nav>
         </div>
     );
