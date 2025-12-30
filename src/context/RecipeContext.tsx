@@ -28,6 +28,7 @@ type RecipeContextType = {
     addRecipe: (recipe: Omit<Recipe, 'id' | 'createdAt'>) => void;
     updateRecipe: (id: string, recipe: Omit<Recipe, 'id' | 'createdAt'>) => void;
     deleteRecipe: (id: string) => void;
+    refreshRecipes: () => Promise<void>;
 };
 
 const RecipeContext = createContext<RecipeContextType | undefined>(undefined);
@@ -117,7 +118,7 @@ export function RecipeProvider({ children }: { children: ReactNode }) {
     };
 
     return (
-        <RecipeContext.Provider value={{ recipes, loading, addRecipe, updateRecipe, deleteRecipe }}>
+        <RecipeContext.Provider value={{ recipes, loading, addRecipe, updateRecipe, deleteRecipe, refreshRecipes: fetchRecipes }}>
             {children}
         </RecipeContext.Provider>
     );
