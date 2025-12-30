@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRecipes } from '../context/RecipeContext';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus } from 'lucide-react';
+import { Plus, Search, X } from 'lucide-react';
 
 export function Home() {
     const { recipes, loading } = useRecipes();
@@ -15,13 +15,16 @@ export function Home() {
         );
     }
     const [selectedCategory, setSelectedCategory] = useState<string>('');
+    const [searchQuery, setSearchQuery] = useState<string>('');
 
     // Get unique categories sorted alphabetically
     const categories = Array.from(new Set(recipes.map(r => r.category).filter(Boolean) as string[])).sort();
 
-    const filteredRecipes = selectedCategory
-        ? recipes.filter(r => r.category === selectedCategory)
-        : recipes;
+    const filteredRecipes = recipes.filter(r => {
+        const matchesCategory = !selectedCategory || r.category === selectedCategory;
+        const matchesSearch = !searchQuery || r.title.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+    });
 
     return (
         <div className="min-h-screen bg-gray-50 pb-32">
@@ -34,6 +37,28 @@ export function Home() {
                     <Link to="/add" className="bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-full shadow-lg shadow-orange-200 transition-all active:scale-95">
                         <Plus size={24} />
                     </Link>
+                </div>
+
+                {/* Search Bar */}
+                <div className="relative mb-4">
+                    <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                        <Search size={18} className="text-gray-400" />
+                    </div>
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Rechercher une recette..."
+                        className="w-full bg-gray-50 border-2 border-transparent focus:border-orange-100 focus:bg-white rounded-2xl py-3 pl-12 pr-12 text-sm font-medium transition-all outline-none"
+                    />
+                    {searchQuery && (
+                        <button
+                            onClick={() => setSearchQuery('')}
+                            className="absolute inset-y-0 right-4 flex items-center text-gray-400 hover:text-gray-600"
+                        >
+                            <X size={18} />
+                        </button>
+                    )}
                 </div>
 
                 {/* Category Filter */}
