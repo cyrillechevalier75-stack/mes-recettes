@@ -44,6 +44,7 @@ export function RecipeProvider({ children }: { children: ReactNode }) {
     }, []);
 
     async function fetchRecipes() {
+        setLoading(true);
         try {
             const { data, error } = await supabase
                 .from('recipes')
