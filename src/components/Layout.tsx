@@ -29,14 +29,11 @@ export function Layout() {
                 <Outlet />
             </main>
 
-            {/* Theme Toggle Overlay (Mobile style) */}
-            <div className="absolute top-4 right-4 z-50">
-                <ThemeToggle />
-            </div>
-
             {/* Bottom Navigation */}
-            <nav className="absolute bottom-0 w-full h-20 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 flex items-center justify-center px-6 pb-2 z-50 rounded-t-[2rem] shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
+            <nav className="absolute bottom-0 w-full h-20 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between px-8 pb-2 z-50 rounded-t-[2rem] shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
+                <div className="w-10"></div> {/* Spacer to keep Home roughly centered if needed, or just let them space out */}
                 <NavItem to="/" icon={Home} label="Accueil" onClick={() => refreshRecipes()} />
+                <ThemeToggle />
             </nav>
         </div>
     );
