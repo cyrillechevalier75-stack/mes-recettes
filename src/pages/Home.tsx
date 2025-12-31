@@ -9,7 +9,7 @@ export function Home() {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+            <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950">
                 <div className="animate-spin text-4xl">🍳</div>
             </div>
         );
@@ -27,12 +27,12 @@ export function Home() {
     });
 
     return (
-        <div className="min-h-screen bg-gray-50 pb-32">
-            <header className="sticky top-0 bg-white/80 backdrop-blur-md z-10 px-6 py-6 border-b border-gray-100">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-950 pb-32">
+            <header className="sticky top-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-10 px-6 py-6 border-b border-gray-100 dark:border-gray-800">
                 <div className="flex items-center justify-between mb-2">
                     <div>
-                        <h1 className="text-2xl font-bold text-gray-800">Mes Recettes</h1>
-                        <p className="text-gray-500 text-sm">Qu'est-ce qu'on mange ? 😋</p>
+                        <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Mes Recettes</h1>
+                        <p className="text-gray-500 dark:text-gray-400 text-sm">Qu'est-ce qu'on mange ? 😋</p>
                     </div>
                     <Link to="/add" className="bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-full shadow-lg shadow-orange-200 transition-all active:scale-95">
                         <Plus size={24} />
@@ -49,7 +49,7 @@ export function Home() {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Rechercher une recette..."
-                        className="w-full bg-gray-50 border-2 border-transparent focus:border-orange-100 focus:bg-white rounded-2xl py-3 pl-12 pr-12 text-sm font-medium transition-all outline-none"
+                        className="w-full bg-gray-50 dark:bg-gray-800 border-2 border-transparent focus:border-orange-100 dark:focus:border-orange-900/50 focus:bg-white dark:focus:bg-gray-800 rounded-2xl py-3 pl-12 pr-12 text-sm font-medium transition-all outline-none dark:text-gray-100"
                     />
                     {searchQuery && (
                         <button
@@ -67,8 +67,8 @@ export function Home() {
                         <button
                             onClick={() => setSelectedCategory('')}
                             className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-bold transition-all ${!selectedCategory
-                                ? 'bg-orange-500 text-white shadow-md shadow-orange-200'
-                                : 'bg-white text-gray-500 border border-gray-200 hover:bg-gray-50'
+                                ? 'bg-orange-500 text-white shadow-md shadow-orange-200 dark:shadow-orange-900/20'
+                                : 'bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
                                 }`}
                         >
                             Toutes
@@ -78,8 +78,8 @@ export function Home() {
                                 key={cat}
                                 onClick={() => setSelectedCategory(cat)}
                                 className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-bold transition-all ${selectedCategory === cat
-                                    ? 'bg-orange-500 text-white shadow-md shadow-orange-200'
-                                    : 'bg-white text-gray-500 border border-gray-200 hover:bg-gray-50'
+                                    ? 'bg-orange-500 text-white shadow-md shadow-orange-200 dark:shadow-orange-900/20'
+                                    : 'bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
                                     }`}
                             >
                                 {cat}
@@ -113,21 +113,21 @@ export function Home() {
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, scale: 0.95 }}
-                                        className="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow relative overflow-hidden"
+                                        className="bg-white dark:bg-gray-900 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex items-center gap-4 hover:shadow-md dark:hover:shadow-gray-900/50 transition-shadow relative overflow-hidden"
                                     >
-                                        <div className="text-4xl w-16 h-16 bg-orange-50 rounded-xl flex items-center justify-center flex-none">
+                                        <div className="text-4xl w-16 h-16 bg-orange-50 dark:bg-orange-900/20 rounded-xl flex items-center justify-center flex-none">
                                             {recipe.emoji}
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                            <h2 className="font-bold text-gray-800 text-lg truncate">{recipe.title}</h2>
-                                            <div className="flex items-center gap-2 text-sm text-gray-400">
+                                            <h2 className="font-bold text-gray-800 dark:text-gray-100 text-lg truncate">{recipe.title}</h2>
+                                            <div className="flex items-center gap-2 text-sm text-gray-400 dark:text-gray-500">
                                                 <span>{recipe.ingredients?.length || 0} ingrédients</span>
                                                 <span>•</span>
                                                 <span>{recipe.baseServings} pers.</span>
                                             </div>
                                         </div>
                                         {recipe.category && (
-                                            <div className="absolute top-0 right-0 bg-orange-100 text-orange-600 text-[10px] font-bold px-2 py-1 rounded-bl-xl uppercase tracking-wider">
+                                            <div className="absolute top-0 right-0 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 text-[10px] font-bold px-2 py-1 rounded-bl-xl uppercase tracking-wider">
                                                 {recipe.category}
                                             </div>
                                         )}

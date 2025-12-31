@@ -47,11 +47,11 @@ export function RecipeDetail() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 pb-32">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-950 pb-32">
             {/* Header */}
             <motion.div
                 layoutId={`header-${recipe.id}`}
-                className="relative h-72 bg-orange-100 flex items-center justify-center overflow-hidden"
+                className="relative h-72 bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center overflow-hidden"
             >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10 z-10"></div>
                 <motion.span
@@ -87,26 +87,26 @@ export function RecipeDetail() {
                 </div>
             </motion.div>
 
-            <div className="p-6 -mt-10 relative z-30 bg-gray-50 rounded-t-[2rem] space-y-8 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
+            <div className="p-6 -mt-10 relative z-30 bg-gray-50 dark:bg-gray-950 rounded-t-[2rem] space-y-8 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)] dark:shadow-none">
 
                 {/* Scaling Control */}
-                <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-gray-700 font-bold">
+                <div className="bg-white dark:bg-gray-900 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-800 flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-gray-700 dark:text-gray-200 font-bold">
                         <Users className="text-orange-500" size={20} />
                         <span>Parts</span>
                     </div>
 
-                    <div className="flex items-center gap-4 bg-gray-50 rounded-xl p-1">
+                    <div className="flex items-center gap-4 bg-gray-50 dark:bg-gray-800 rounded-xl p-1">
                         <button
                             onClick={() => handleUpdateServings(-1)}
-                            className="w-8 h-8 flex items-center justify-center bg-white rounded-lg shadow-sm text-gray-600 active:scale-95 transition"
+                            className="w-8 h-8 flex items-center justify-center bg-white dark:bg-gray-700 rounded-lg shadow-sm text-gray-600 dark:text-gray-300 active:scale-95 transition"
                         >
                             <Minus size={16} />
                         </button>
-                        <span className="w-6 text-center font-bold text-lg">{servings}</span>
+                        <span className="w-6 text-center font-bold text-lg dark:text-gray-100">{servings}</span>
                         <button
                             onClick={() => handleUpdateServings(1)}
-                            className="w-8 h-8 flex items-center justify-center bg-white rounded-lg shadow-sm text-gray-600 active:scale-95 transition"
+                            className="w-8 h-8 flex items-center justify-center bg-white dark:bg-gray-700 rounded-lg shadow-sm text-gray-600 dark:text-gray-300 active:scale-95 transition"
                         >
                             <Plus size={16} />
                         </button>
@@ -120,17 +120,17 @@ export function RecipeDetail() {
                     transition={{ delay: 0.2 }}
                     className="space-y-4"
                 >
-                    <h2 className="text-2xl font-bold text-gray-900">Ingrédients</h2>
-                    <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Ingrédients</h2>
+                    <div className="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
                         <ul className="space-y-4">
                             {recipe.ingredients.map((ing, i) => (
-                                <li key={i} className="flex items-center gap-4 text-gray-700">
+                                <li key={i} className="flex items-center gap-4 text-gray-700 dark:text-gray-300">
                                     <div className="w-3 h-3 bg-orange-400 rounded-full flex-none shadow-sm" />
                                     <div className="flex items-baseline gap-1">
-                                        <span className="text-xl font-bold text-gray-900">
+                                        <span className="text-xl font-bold text-gray-900 dark:text-white">
                                             {calculateQty(ing.quantity)}
                                         </span>
-                                        <span className="text-gray-500 font-medium text-sm">{ing.unit}</span>
+                                        <span className="text-gray-500 dark:text-gray-500 font-medium text-sm">{ing.unit}</span>
                                         <span className="text-lg font-medium ml-1">{ing.name}</span>
                                     </div>
                                 </li>
@@ -141,7 +141,7 @@ export function RecipeDetail() {
 
                 {/* Steps */}
                 <div className="space-y-4">
-                    <h2 className="text-2xl font-bold text-gray-900">Préparation</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Préparation</h2>
                     <div className="space-y-4">
                         {recipe.steps.map((step, i) => (
                             <motion.div
@@ -150,10 +150,10 @@ export function RecipeDetail() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.3 + (i * 0.1) }}
                                 onClick={() => setActiveStep(i)}
-                                className={`p-6 rounded-3xl border-2 transition-all duration-300 cursor-pointer ${activeStep === i ? 'bg-orange-500 border-orange-500 text-white shadow-xl shadow-orange-200 transform scale-[1.02]' : 'bg-white border-transparent shadow-sm text-gray-600 hover:border-orange-100'}`}
+                                className={`p-6 rounded-3xl border-2 transition-all duration-300 cursor-pointer ${activeStep === i ? 'bg-orange-500 border-orange-500 text-white shadow-xl shadow-orange-200 transform scale-[1.02]' : 'bg-white dark:bg-gray-900 border-transparent dark:border-gray-800 shadow-sm text-gray-600 dark:text-gray-300 hover:border-orange-100 dark:hover:border-orange-900'}`}
                             >
                                 <div className="flex gap-5">
-                                    <span className={`text-4xl font-extrabold opacity-40 ${activeStep === i ? 'text-white' : 'text-orange-200'}`}>{i + 1}</span>
+                                    <span className={`text-4xl font-extrabold opacity-40 ${activeStep === i ? 'text-white' : 'text-orange-200 dark:text-orange-900'}`}>{i + 1}</span>
                                     <p className="leading-relaxed text-lg pt-1 font-medium">{step}</p>
                                 </div>
                             </motion.div>

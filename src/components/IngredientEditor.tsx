@@ -37,8 +37,8 @@ export function IngredientEditor({ ingredients, onChange }: IngredientEditorProp
 
     return (
         <div className="space-y-3">
-            <h2 className="text-lg font-bold text-gray-800 flex items-center gap-2">
-                🥗 Ingrédients <span className="text-sm font-normal text-gray-400">({ingredients.length})</span>
+            <h2 className="text-lg font-bold text-gray-800 dark:text-white flex items-center gap-2">
+                🥗 Ingrédients <span className="text-sm font-normal text-gray-400 dark:text-gray-500">({ingredients.length})</span>
             </h2>
 
             {/* Add Row */}
@@ -50,7 +50,7 @@ export function IngredientEditor({ ingredients, onChange }: IngredientEditorProp
                         value={newQty}
                         onChange={(e) => setNewQty(e.target.value)}
                         placeholder="500"
-                        className="w-full px-3 py-3 bg-white border border-gray-200 rounded-xl focus:border-orange-500 outline-none text-center font-medium"
+                        className="w-full px-3 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl focus:border-orange-500 outline-none text-center font-medium dark:text-white"
                     />
                 </div>
                 <div className="w-20">
@@ -58,7 +58,7 @@ export function IngredientEditor({ ingredients, onChange }: IngredientEditorProp
                     <select
                         value={newUnit}
                         onChange={(e) => setNewUnit(e.target.value)}
-                        className="w-full px-1 py-3 bg-white border border-gray-200 rounded-xl focus:border-orange-500 outline-none text-center text-sm appearance-none"
+                        className="w-full px-1 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl focus:border-orange-500 outline-none text-center text-sm appearance-none dark:text-white"
                     >
                         <option value="">-</option>
                         <option value="g">g</option>
@@ -76,13 +76,13 @@ export function IngredientEditor({ ingredients, onChange }: IngredientEditorProp
                         onChange={(e) => setNewName(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleAdd())}
                         placeholder="Farine"
-                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:border-orange-500 outline-none"
+                        className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl focus:border-orange-500 outline-none dark:text-white"
                     />
                 </div>
                 <button
                     type="button"
                     onClick={handleAdd}
-                    className="p-3 bg-orange-100 text-orange-600 rounded-xl hover:bg-orange-200 transition-colors mb-[1px]"
+                    className="p-3 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-xl hover:bg-orange-200 dark:hover:bg-orange-900/50 transition-colors mb-[1px]"
                 >
                     <Plus size={24} />
                 </button>
@@ -91,13 +91,13 @@ export function IngredientEditor({ ingredients, onChange }: IngredientEditorProp
             {/* List */}
             <ul className="space-y-2">
                 {ingredients.map((ing, idx) => (
-                    <li key={idx} className="flex items-center gap-2 p-2 bg-white rounded-xl shadow-sm border border-gray-50 animate-in slide-in-from-bottom-2 fade-in duration-300">
+                    <li key={idx} className="flex items-center gap-2 p-2 bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-50 dark:border-gray-800 animate-in slide-in-from-bottom-2 fade-in duration-300">
                         <div className="w-16">
                             <input
                                 type="number"
                                 value={ing.quantity}
                                 onChange={(e) => handleChange(idx, 'quantity', e.target.value)}
-                                className="w-full px-2 py-2 bg-gray-50 border border-transparent focus:bg-white focus:border-orange-500 rounded-lg outline-none text-center font-bold text-orange-500 text-sm"
+                                className="w-full px-2 py-2 bg-gray-50 dark:bg-gray-800 border border-transparent focus:bg-white dark:focus:bg-gray-700 focus:border-orange-500 rounded-lg outline-none text-center font-bold text-orange-500 text-sm"
                                 placeholder="100"
                             />
                         </div>
@@ -105,7 +105,7 @@ export function IngredientEditor({ ingredients, onChange }: IngredientEditorProp
                             <select
                                 value={ing.unit}
                                 onChange={(e) => handleChange(idx, 'unit', e.target.value)}
-                                className="w-full px-1 py-2 bg-gray-50 border border-transparent focus:bg-white focus:border-orange-500 rounded-lg outline-none text-center text-xs appearance-none font-medium text-gray-600"
+                                className="w-full px-1 py-2 bg-gray-50 dark:bg-gray-800 border border-transparent focus:bg-white dark:focus:bg-gray-700 focus:border-orange-500 rounded-lg outline-none text-center text-xs appearance-none font-medium text-gray-600 dark:text-gray-400"
                             >
                                 <option value="">-</option>
                                 <option value="g">g</option>
@@ -120,7 +120,7 @@ export function IngredientEditor({ ingredients, onChange }: IngredientEditorProp
                                 type="text"
                                 value={ing.name}
                                 onChange={(e) => handleChange(idx, 'name', e.target.value)}
-                                className="w-full px-2 py-2 bg-transparent border-b border-transparent focus:border-orange-200 outline-none text-gray-700 font-medium"
+                                className="w-full px-2 py-2 bg-transparent border-b border-transparent focus:border-orange-200 dark:focus:border-orange-900 outline-none text-gray-700 dark:text-gray-200 font-medium"
                                 placeholder="Ingrédient..."
                             />
                         </div>
